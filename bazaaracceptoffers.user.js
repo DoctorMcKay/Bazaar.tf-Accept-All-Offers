@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Bazaar.tf Accept All Trade Offers
 // @namespace   http://www.doctormckay.com
-// @version     1.1.1
+// @version     1.2.0
 // @description Adds a button to the trade offers page to accept all offers
 // @match       http://bazaar.tf/my/tradeoffers
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
@@ -85,6 +85,8 @@ function acceptOffers(rows) {
 				var json = JSON.parse(response.responseText);
 				if(json.needs_email_confirmation) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-envelope-o');
+				} elseif(json.needs_mobile_confirmation) {
+					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-mobile');
 				} else if(!json.tradeid) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-times-circle-o');
 				} else {
