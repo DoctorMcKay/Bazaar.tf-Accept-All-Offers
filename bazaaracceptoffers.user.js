@@ -85,7 +85,7 @@ function acceptOffers(rows) {
 				var json = JSON.parse(response.responseText);
 				if(json.needs_email_confirmation) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-envelope-o');
-				} elseif(json.needs_mobile_confirmation) {
+				} else if(json.needs_mobile_confirmation) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-mobile');
 				} else if(!json.tradeid) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-times-circle-o');
