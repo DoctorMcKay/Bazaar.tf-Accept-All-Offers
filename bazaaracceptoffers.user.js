@@ -83,10 +83,10 @@ function acceptOffers(rows) {
 			
 			try {
 				var json = JSON.parse(response.responseText);
-				if(json.needs_email_confirmation) {
-					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-envelope-o');
-				} else if(json.needs_mobile_confirmation) {
+				if(json.needs_mobile_confirmation) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-mobile');
+				} else if(json.needs_email_confirmation) {
+					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-envelope-o');
 				} else if(!json.tradeid) {
 					offer.icon.removeClass('fa-spinner fa-spin').addClass('fa-times-circle-o');
 				} else {
