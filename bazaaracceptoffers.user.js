@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Bazaar.tf Accept All Trade Offers
 // @namespace   http://www.doctormckay.com
-// @version     1.2.1
+// @version     1.2.2
 // @description Adds a button to the trade offers page to accept all offers
 // @match       http://bazaar.tf/my/tradeoffers
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
@@ -19,7 +19,7 @@ $(document).ready(function() {
 		
 		GM_xmlhttpRequest({
 			"method": "GET",
-			"url": "https://steamcommunity.com/my/tradeoffers",
+			"url": "https://steamcommunity.com/dev", // the actual URL doesn't matter, we just need a sessionid. /dev is static and so should load fast
 			"onload": function(response) {
 				if(!response.responseText) {
 					button.text('Error');
