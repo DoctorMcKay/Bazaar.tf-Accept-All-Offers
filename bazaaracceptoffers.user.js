@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name        Bazaar.tf Accept All Trade Offers
 // @namespace   http://www.doctormckay.com
-// @version     1.2.2
+// @version     1.2.3
 // @description Adds a button to the trade offers page to accept all offers
 // @match       http://bazaar.tf/my/tradeoffers
-// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
+// @require     https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
+// @require     https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
+// @grant       GM.xmlHttpRequest
 // @grant       GM_xmlhttpRequest
 // ==/UserScript==
 
@@ -17,7 +19,7 @@ $(document).ready(function() {
 		var button = $('<button class="btn btn-success btn-lg pull-right" disabled>Accept All</button>');
 		$('.page-header').append(button);
 		
-		GM_xmlhttpRequest({
+		GM.xmlHttpRequest({
 			"method": "GET",
 			"url": "https://steamcommunity.com/dev", // the actual URL doesn't matter, we just need a sessionid. /dev is static and so should load fast
 			"onload": function(response) {
@@ -66,7 +68,7 @@ function acceptOffers(rows) {
 	
 	var offer = rows.splice(0, 1)[0];
 	offer.icon.removeClass('fa-clock-o').addClass('fa-spinner fa-spin');
-	GM_xmlhttpRequest({
+	GM.xmlHttpRequest({
 		"method": "POST",
 		"url": "https://steamcommunity.com/tradeoffer/" + offer.offerid + "/accept",
 		"data": "sessionid=" + encodeURIComponent(g_sessionID) + "&serverid=1&tradeofferid=" + offer.offerid + "&partner=" + offer.steamid,
